@@ -1,4 +1,5 @@
 import logging
+from typing import Optional
 
 from pydantic import BaseModel
 from sqlalchemy import Column, Integer, String
@@ -15,10 +16,12 @@ class Prompt(Base):
 
 
 # Schemas
+
+
 class PromptCreate(BaseModel):
     title: str
     content: str
-    description: str = None
+    description: Optional[str] = None
 
 
 class PromptOut(PromptCreate):
