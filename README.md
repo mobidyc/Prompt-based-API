@@ -84,6 +84,7 @@ To keep consistency please use `uv`: `uv run pytest tests`
 
 - Refactor this MVP using async
 - Use a Virgin development DB in tests
+- Add a github workflow and a self-runner to validate changes through a PR
 - Implement a proper logging definition loglevel management, maybe in the settings part
 - Implement managed Exceptions and HTTP return codes in case of error
 - Add more functional tests using mocks
