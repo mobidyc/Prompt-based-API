@@ -1,6 +1,10 @@
-from sqlalchemy import Column, Integer, String
-from app.core.database import Base
+import logging
+
 from pydantic import BaseModel
+from sqlalchemy import Column, Integer, String
+
+from app.core.database import Base
+
 
 class Prompt(Base):
     __tablename__ = "prompts"
@@ -9,11 +13,13 @@ class Prompt(Base):
     title = Column(String, index=True)
     content = Column(String)
 
+
 # Schemas
 class PromptCreate(BaseModel):
     title: str
     content: str
     description: str = None
+
 
 class PromptOut(PromptCreate):
     id: int
