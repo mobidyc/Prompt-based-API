@@ -31,17 +31,25 @@ def post_prompt_item(
 
 
 @router.post("/prompts/", response_model=PromptOut)
-def create_prompt(prompt: PromptCreate, db: Session = Depends(get_db)):
+def create_prompt(
+    prompt: PromptCreate,
+    db: Session = Depends(get_db),
+):
     return crud.create_prompt(db, prompt.title, prompt.content)
 
 
 @router.get("/prompts/", response_model=list[PromptOut])
-def list_prompts(db: Session = Depends(get_db)):
+def list_prompts(
+    db: Session = Depends(get_db),
+):
     return crud.get_prompts(db)
 
 
 @router.delete("/prompts/{prompt_id}", response_model=PromptOut)
-def delete_prompt(prompt_id: int, db: Session = Depends(get_db)):
+def delete_prompt(
+    prompt_id: int,
+    db: Session = Depends(get_db),
+):
     prompt = crud.delete_prompt(db, prompt_id)
     if not prompt:
         raise HTTPException(status_code=404, detail="Prompt not found")
