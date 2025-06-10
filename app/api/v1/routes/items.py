@@ -11,6 +11,7 @@ from app.services.item_service import generate
 
 
 # Dependency to get DB session
+# We should externalize this to a separate file maybe using a Singleton pattern
 def get_db():
     db = SessionLocal()
     try:
@@ -20,6 +21,10 @@ def get_db():
 
 
 router = APIRouter()
+
+###
+# TODO: Add authentication and authorization, use dependencies module of APIRouter for that
+###
 
 
 @router.post("/{prompt_id}/generate", response_model=generate_answer)

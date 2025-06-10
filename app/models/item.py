@@ -3,6 +3,8 @@ from typing import Optional
 
 from pydantic import BaseModel
 
+# Define the schema models for the API requests and responses
+
 
 class generate_answer(BaseModel):
     sysprompt: Optional[str] = None  # Optional field for system prompt

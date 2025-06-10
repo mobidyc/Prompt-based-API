@@ -5,6 +5,10 @@ from sqlalchemy.orm import Session
 
 from app.models import prompt as prompt_models
 
+###
+# CRUD operations for prompts
+###
+
 
 def get_prompts(db: Session):
     return db.query(prompt_models.Prompt).all()

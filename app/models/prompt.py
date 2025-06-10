@@ -6,6 +6,8 @@ from sqlalchemy import Column, Integer, String
 
 from app.core.database import Base
 
+# Database model for prompts
+
 
 class Prompt(Base):
     __tablename__ = "prompts"
