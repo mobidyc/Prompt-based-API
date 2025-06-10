@@ -1,4 +1,5 @@
 import logging
+from typing import Optional
 
 from sqlalchemy.orm import Session
 
@@ -13,8 +14,10 @@ def get_prompt_by_id(db: Session, prompt_id: int):
     return db.query(prompt_models.Prompt).filter(prompt_models.Prompt.id == prompt_id).first()
 
 
-def create_prompt(db: Session, title: str, content: str):
+def create_prompt(db: Session, title: str, content: str, description: Optional[str] = None):
     prompt = prompt_models.Prompt(title=title, content=content)
+    if description is not None:
+        prompt.description = description
     db.add(prompt)
     db.commit()
     db.refresh(prompt)

@@ -9,6 +9,10 @@ class generate_answer(BaseModel):
     answer: str
 
 
+class request_variables(BaseModel):
+    language: Optional[str] = None  # Language for the request, e.g., "en" for English, "fr" for French
+
+
 class generate_request(BaseModel):
     input: str
-    translate_to: Optional[str] = None  # Optional field to specify a language for translation
+    variables: Optional[request_variables] = None  # Optional field to use a custom variables object

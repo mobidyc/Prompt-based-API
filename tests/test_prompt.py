@@ -55,7 +55,7 @@ def test_delete_prompt(prompt_data):
 
 
 def test_translate_english_to_french(prompt_id):
-    payload = {"input": "Hello, how are you?", "translate_to": "fr"}
+    payload = {"input": "Hello, how are you?", "variables": {"language": "fr"}}
     response = client.post(f"/{prompt_id}/generate", json=payload)
     assert response.status_code == 200
     data = response.json()

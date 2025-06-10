@@ -35,7 +35,7 @@ def create_prompt(
     prompt: PromptCreate,
     db: Session = Depends(get_db),
 ):
-    return crud.create_prompt(db, prompt.title, prompt.content)
+    return crud.create_prompt(db, prompt.title, prompt.content, prompt.description)
 
 
 @router.get("/prompts/", response_model=list[PromptOut])
