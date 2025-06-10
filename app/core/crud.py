@@ -22,7 +22,7 @@ def create_prompt(db: Session, title: str, content: str):
 
 
 def delete_prompt(db: Session, prompt_id: int):
-    prompt = db.query(prompt_models.Prompt).get(prompt_id)
+    prompt = db.get(prompt_models.Prompt, prompt_id)
     if prompt:
         db.delete(prompt)
         db.commit()
