@@ -9,6 +9,10 @@ def get_prompts(db: Session):
     return db.query(prompt_models.Prompt).all()
 
 
+def get_prompt_by_id(db: Session, prompt_id: int):
+    return db.query(prompt_models.Prompt).filter(prompt_models.Prompt.id == prompt_id).first()
+
+
 def create_prompt(db: Session, title: str, content: str):
     prompt = prompt_models.Prompt(title=title, content=content)
     db.add(prompt)

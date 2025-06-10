@@ -1,11 +1,11 @@
 import logging
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Body, Depends, HTTPException, Path
 from sqlalchemy.orm import Session
 
 from app.core import crud
 from app.core.database import SessionLocal
-from app.models.item import generate_answer
+from app.models.item import generate_answer, generate_request
 from app.models.prompt import PromptCreate, PromptOut
 from app.services.item_service import generate
 
@@ -23,8 +23,11 @@ router = APIRouter()
 
 
 @router.post("/{prompt_id}/generate", response_model=generate_answer)
-def post_prompt_item(prompt_id: int):
-    return generate(prompt_id)
+def post_prompt_item(
+    prompt_id: int = Path(..., description="ID du prompt"),
+    payload: generate_request = Body(...),
+):
+    return generate(prompt_id, payload=payload)
 
 
 @router.post("/prompts/", response_model=PromptOut)

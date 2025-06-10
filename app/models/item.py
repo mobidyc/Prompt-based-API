@@ -4,6 +4,8 @@ from pydantic import BaseModel
 
 
 class generate_answer(BaseModel):
-    id: int
-    name: str
-    description: str
+    answer: str
+
+
+class generate_request(BaseModel):
+    input: str

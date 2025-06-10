@@ -15,9 +15,6 @@ class Prompt(Base):
     content = Column(String)
 
 
-# Schemas
-
-
 class PromptCreate(BaseModel):
     title: str
     content: str
