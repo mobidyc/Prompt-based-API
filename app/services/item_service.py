@@ -23,6 +23,10 @@ def generate(prompt_id: int, payload: generate_request) -> generate_answer:
     if prompt is None or prompt.id is None:
         raise Exception("Prompt not found")
 
-    response = client.responses.create(model="gpt-4.1", input=f"{prompt.content}\n\n{payload.input} ")
+    sysprompt = str(prompt.content)  # cast to str as it can be a non-string type
+    if payload.translate_to is not None:
+        sysprompt = f"{str(prompt.content)} Translate the following text to {payload.translate_to}."
 
-    return generate_answer(answer=f"{response.output_text}")
+    response = client.responses.create(model="gpt-4.1", input=f"{sysprompt}\n\n{payload.input} ")
+
+    return generate_answer(sysprompt=sysprompt, answer=f"{response.output_text}")
